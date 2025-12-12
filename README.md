@@ -52,7 +52,13 @@ ml-dashboard/
 │   ├── __init__.py
 │   ├── ml_dashboard.py        # Main dashboard UI & state logic
 │
+│
+├── tests/
+│   ├── test_ml_dashboard.py     # State logic tests (pytest)
+│   └── conftest.py              # Ensures project root is importable
 ├── assets/                    # Static assets (images, icons, etc.)
+|
+|
 ├── .web/                      # Auto-generated Reflex frontend files
 │
 ├── rxconfig.py                # Reflex project configuration
@@ -252,6 +258,90 @@ Plug in:
 - Local GPU/CPU usage
 
 All accessible directly from Python state.
+
+---
+
+## 🧪 Unit Tests
+
+This project includes a lightweight pytest test suite to validate application logic in the DashboardState class.
+Following a Test-Driven Development (TDD) mindset, core behaviors such as computed properties and state mutation events are covered by automated tests.
+
+Unit tests currently validate:
+
+Weekly total minutes calculation
+
+Progress percentage (including capping at 100%)
+
+Task completion counters (open_tasks, done_tasks)
+
+Event methods (e.g., toggle_taskX) — coming next
+
+Tests live inside the tests/ directory:
+
+```bash
+ml-dashboard/
+│
+├── ml_dashboard/
+│   ├── ml_dashboard.py
+│   └── __init__.py
+│
+├── tests/
+│   ├── test_ml_dashboard.py     # State logic tests (pytest)
+│   └── conftest.py              # Ensures project root is importable
+```
+
+---
+
+## 📦 Installing Test Dependencies
+
+`pytest` is included in `requirements.txt`:
+
+```bash
+reflex==0.8.22
+pytest
+```
+
+Install all dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+### ▶️ Running the Test Suite
+
+From the project root (with your virtual environment active):
+
+```bash
+python -m pytest
+```
+
+You should see an output similar to:
+
+```bash
+====================================== test session starts ======================================
+collected 2 items
+
+tests/test_ml_dashboard.py ..                                                              [100%]
+
+======================================= 2 passed in 1.78s ======================================
+```
+
+---
+
+## 🧩 Example Test (Current)
+
+```python
+from ml_dashboard.ml_dashboard import DashboardState
+
+def test_total_minutes_default():
+    state = DashboardState()
+    assert state.total_minutes == 90 + 60 + 120 + 45 + 80 + 150 + 100
+
+def test_progress_percent_capped_at_100():
+    state = DashboardState(weekly_goal=100)
+    assert state.progress_percent == 100
+
+```
 
 ---
 
