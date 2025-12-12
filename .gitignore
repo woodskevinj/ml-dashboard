@@ -16,6 +16,7 @@ build/
 # Reflex Build Artifacts
 # -----------------------------
 .web/            # Auto-generated frontend build output
+.states/
 reflex.zip       # Sometimes created when exporting
 .rx/             # Internal Reflex caches (depending on version)
 
