@@ -207,6 +207,105 @@ If you see stale UI behavior:
 
 ---
 
+## 🧭 Pages & Navigation
+
+This project is now a **multi-page Reflex application**, making it feel more like a real internal dashboard tool rather than a single static screen. Reflex automatically handles routing, rendering, and state updates across pages — all written in pure Python.
+
+### Available Routes
+
+| **Route** | **Page**           | **Description**                                                                                   |
+| --------- | ------------------ | ------------------------------------------------------------------------------------------------- |
+| /         | **Dashboard Home** | Main overview page: KPIs, weekly progress bar, sessions summary, task list, and navigation links. |
+| /sessions | **Study Sessions** | A dedicated page showing your weekly study blocks and focus summaries.                            |
+| /tasks    | **Tasks Page**     | Focused page for managing and toggling your development / ML tasks.                               |
+
+---
+
+## 📄 Page Structure Overview
+
+### 🏠 Dashboard ( `/` )
+
+The main page includes:
+
+- Weekly KPI cards
+
+- Progress bar toward weekly focus goal
+
+- Overview of sessions
+
+- Task list
+
+- Mini navigation bar (Home, Sessions, Tasks)
+
+This page acts as the central hub for your ML productivity tracking.
+
+---
+
+## 📚 Study Sessions Page ( `/sessions` )
+
+This page provides a more focused view of:
+
+- Each daily study block
+
+- Minutes logged
+
+- High-level study summaries
+
+Useful for reviewing your week, planning improvements, or evaluating consistency.
+
+It also includes simple navigation back to the Dashboard or Tasks page.
+
+---
+
+## 📝 Tasks Page ( `/tasks` )
+
+A clean, dedicated view for:
+
+- Reviewing daily ML / dev tasks
+
+- Toggling tasks complete/incomplete
+
+- Tracking overall productivity (open vs done tasks)
+
+Like the other pages, it includes navigation back to the Dashboard and Sessions pages.
+
+---
+
+## 🔗 Navigation Experience
+
+Navigation is done using Reflex’s built-in `<rx.link>` component, allowing for seamless client-side page transitions without reloading the entire app.
+
+Example snippet used on the dashboard:
+
+```python
+rx.hstack(
+    rx.link("Home", href="/"),
+    rx.link("Sessions", href="/sessions"),
+    rx.link("Tasks", href="/tasks"),
+    spacing="4",
+    padding_y="0.5rem",
+)
+```
+
+This gives your app a lightweight “navbar” experience without adding frontend code or modifying templates.
+
+---
+
+## 🌐 App Routing Setup (for reference)
+
+The pages are registered in `ml_dashboard/ml_dashboard.py` like so:
+
+```python
+app = rx.App()
+app.add_page(index, route="/", title="ML Dashboard")
+app.add_page(sessions_page, route="/sessions", title="Study Sessions")
+app.add_page(tasks_page, route="/tasks", title="Tasks")
+```
+
+This explicitly maps page functions to routes, ensuring `/` renders the home dashboard even if Reflex defaults change in the future.
+
+---
+
 ## 📌 Next Steps
 
 Here are clean upgrade paths for when you want to expand the dashboard:
