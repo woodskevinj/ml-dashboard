@@ -294,11 +294,13 @@ def task_list() -> rx.Component:
 # ---------- Page layout ----------
 
 def index() -> rx.Component:
+    """Home dashboard page."""
     return rx.box(
         rx.color_mode.button(position="top-right"),
         rx.center(
             rx.container(
                 rx.vstack(
+                    # Header
                     rx.vstack(
                         rx.text("Applied ML Journey", size="2", color="gray"),
                         rx.heading("Personal ML / Dev Dashboard", size="7"),
@@ -310,6 +312,15 @@ def index() -> rx.Component:
                         spacing="2",
                         align_items="flex-start",
                     ),
+                    # Simple nav
+                    rx.hstack(
+                        rx.link("Home", href="/"),
+                        rx.link("Sessions", href="/sessions"),
+                        rx.link("Tasks", href="/tasks"),
+                        spacing="4",
+                        padding_y="0.5rem",
+                    ),
+                    # Main content
                     kpi_row(),
                     progress_section(),
                     rx.grid(
@@ -332,7 +343,131 @@ def index() -> rx.Component:
     )
 
 
+def sessions_page() -> rx.Component:
+    """Dedicated page for study sessions."""
+    return rx.box(
+        rx.color_mode.button(position="top-right"),
+        rx.center(
+            rx.container(
+                rx.vstack(
+                    rx.vstack(
+                        rx.text("Applied ML Journey", size="2", color="gray"),
+                        rx.heading("Study Sessions", size="7"),
+                        rx.text(
+                            "Overview of your focused work blocks for the week.",
+                            size="2",
+                            color="gray",
+                        ),
+                        spacing="2",
+                        align_items="flex-start",
+                    ),
+                    rx.hstack(
+                        rx.link("← Back to Dashboard", href="/"),
+                        rx.spacer(),
+                        rx.link("Tasks", href="/tasks"),
+                        spacing="4",
+                        width="100%",
+                    ),
+                    sessions_section(),
+                    spacing="6",
+                    width="100%",
+                ),
+                max_width="900px",
+                padding_y="2rem",
+            ),
+        ),
+        min_height="100vh",
+        bg="gray.1",
+        padding_x="1rem",
+    )
+
+
+def tasks_page() -> rx.Component:
+    """Dedicated page for task management."""
+    return rx.box(
+        rx.color_mode.button(position="top-right"),
+        rx.center(
+            rx.container(
+                rx.vstack(
+                    rx.vstack(
+                        rx.text("Applied ML Journey", size="2", color="gray"),
+                        rx.heading("Today’s Tasks", size="7"),
+                        rx.text(
+                            "Manage your ML / dev tasks and track completion.",
+                            size="2",
+                            color="gray",
+                        ),
+                        spacing="2",
+                        align_items="flex-start",
+                    ),
+                    rx.hstack(
+                        rx.link("← Back to Dashboard", href="/"),
+                        rx.spacer(),
+                        rx.link("Sessions", href="/sessions"),
+                        spacing="4",
+                        width="100%",
+                    ),
+                    task_list(),
+                    spacing="6",
+                    width="100%",
+                ),
+                max_width="900px",
+                padding_y="2rem",
+            ),
+        ),
+        min_height="100vh",
+        bg="gray.1",
+        padding_x="1rem",
+    )
+
+
 # ---------- App wiring ----------
 
 app = rx.App()
 app.add_page(index, route="/", title="ML Dashboard")
+app.add_page(sessions_page, route="/sessions", title="Study Sessions")
+app.add_page(tasks_page, route="/tasks", title="Tasks")
+
+# def index() -> rx.Component:
+#     return rx.box(
+#         rx.color_mode.button(position="top-right"),
+#         rx.center(
+#             rx.container(
+#                 rx.vstack(
+#                     rx.vstack(
+#                         rx.text("Applied ML Journey", size="2", color="gray"),
+#                         rx.heading("Personal ML / Dev Dashboard", size="7"),
+#                         rx.text(
+#                             "Track focus time and tasks – all in pure Python with Reflex.",
+#                             size="2",
+#                             color="gray",
+#                         ),
+#                         spacing="2",
+#                         align_items="flex-start",
+#                     ),
+#                     kpi_row(),
+#                     progress_section(),
+#                     rx.grid(
+#                         sessions_section(),
+#                         task_list(),
+#                         columns="2",
+#                         spacing="4",
+#                         width="100%",
+#                     ),
+#                     spacing="6",
+#                     width="100%",
+#                 ),
+#                 max_width="1200px",
+#                 padding_y="2rem",
+#             ),
+#         ),
+#         min_height="100vh",
+#         bg="gray.1",
+#         padding_x="1rem",
+#     )
+
+
+# # ---------- App wiring ----------
+
+# app = rx.App()
+# app.add_page(index, route="/", title="ML Dashboard")
