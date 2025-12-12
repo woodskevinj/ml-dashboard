@@ -1,0 +1,39 @@
+# -----------------------------
+# Python / Virtual Environment
+# -----------------------------
+venv/
+.env
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+*.pdb
+*.egg-info/
+dist/
+build/
+
+# -----------------------------
+# Reflex Build Artifacts
+# -----------------------------
+.web/            # Auto-generated frontend build output
+reflex.zip       # Sometimes created when exporting
+.rx/             # Internal Reflex caches (depending on version)
+
+# -----------------------------
+# IDE / Editor Files
+# -----------------------------
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# -----------------------------
+# Logs / Debug
+# -----------------------------
+*.log
+
+# -----------------------------
+# OS-generated files
+# -----------------------------
+.DS_Store
+Thumbs.db
