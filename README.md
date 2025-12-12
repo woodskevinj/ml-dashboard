@@ -263,20 +263,21 @@ All accessible directly from Python state.
 
 ## 🧪 Unit Tests
 
-This project includes a lightweight pytest test suite to validate application logic in the DashboardState class.
-Following a Test-Driven Development (TDD) mindset, core behaviors such as computed properties and state mutation events are covered by automated tests.
+This project includes a lightweight **pytest** test suite to validate application logic in the `DashboardState` class.
+
+Following a **Test-Driven Development (TDD)** mindset, core behaviors such as computed properties and state mutation events are covered by automated tests.
 
 Unit tests currently validate:
 
-Weekly total minutes calculation
+- Weekly total minutes calculation
 
-Progress percentage (including capping at 100%)
+- Progress percentage (including capping at 100%)
 
-Task completion counters (open_tasks, done_tasks)
+- Task completion counters (`open_tasks`, `done_tasks`)
 
-Event methods (e.g., toggle_taskX) — coming next
+- Event methods (e.g., `toggle_taskX`) — coming next
 
-Tests live inside the tests/ directory:
+Tests live inside the `tests/` directory:
 
 ```bash
 ml-dashboard/
