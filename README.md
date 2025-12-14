@@ -31,7 +31,7 @@ State changes (such as checking off tasks) automatically update the UI.
 
 ### 🎯 ML Journey Focus
 
-This dashboard is structured around your real ML engineering workflow:
+This dashboard is structured around real ML engineering workflow:
 
 - Study blocks
 
